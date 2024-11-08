@@ -40,7 +40,7 @@ p {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
-    font-size: 30px;
+    font-size: 20px;
     font-family: 'Dubai Light';
     color: #ffffff;
     text-align: center;
@@ -62,7 +62,7 @@ p {
         width: 0;
     }
     to {
-        width: 32%;
+        width: 29%;
         /* Panjang teks penuh */
     }
 }
@@ -85,7 +85,7 @@ p {
     top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 25px;
+    font-size: 20px;
     font-family: 'Dubai Regular';
     color: #ffffff;
     text-align: center;
@@ -96,7 +96,7 @@ p {
     border-bottom: 1px solid #ffffff92;
     background-color: transparent;
     color: #ffffff;
-    font-size: 25px;
+    font-size: 20px;
     font-family: 'Dubai Regular';
     text-align: center;
     outline: none;
@@ -115,7 +115,7 @@ p {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
-    font-size: 50px;
+    font-size: 40px;
     font-family: 'Liberty';
     text-align: center;
     letter-spacing: -10px;
