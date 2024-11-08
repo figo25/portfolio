@@ -1,0 +1,270 @@
+@font-face {
+    font-family: "Liberty";
+    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/907368/liberty.otf');
+}
+
+@font-face {
+    font-family: 'Dubai Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Dubai Regular'), url('font/Dubai-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Dubai Light';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Dubai Light'), url('font/Dubai-Light.ttf') format('truetype');
+}
+
+
+/* Mengatur tampilan untuk partikel */
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#particles-js {
+    width: 100%;
+    height: 100%;
+    background: #000000;
+}
+
+p {
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    font-size: 30px;
+    font-family: 'Dubai Light';
+    color: #ffffff;
+    text-align: center;
+    letter-spacing: 2px;
+    overflow: hidden;
+    /* Agar teks terpotong saat mengetik */
+    border-right: 2px solid #ffffff9e;
+    /* Efek kursor */
+    white-space: nowrap;
+    /* Mencegah teks ke baris baru */
+    animation: typing 4s steps(40, end), blink-caret 0.7s step-end infinite;
+}
+
+
+/* Animasi mengetik */
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 32%;
+        /* Panjang teks penuh */
+    }
+}
+
+
+/* Animasi kedip kursor */
+
+@keyframes blink-caret {
+    from,
+    to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: #ffffff;
+    }
+}
+
+.input-container {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    font-family: 'Dubai Regular';
+    color: #ffffff;
+    text-align: center;
+}
+
+.input-field {
+    border: none;
+    border-bottom: 1px solid #ffffff92;
+    background-color: transparent;
+    color: #ffffff;
+    font-size: 25px;
+    font-family: 'Dubai Regular';
+    text-align: center;
+    outline: none;
+}
+
+.input-field:focus {
+    border-bottom: 2px solid #fae0f7;
+}
+
+
+/* Gaya untuk teks */
+
+.text {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    font-size: 50px;
+    font-family: 'Liberty';
+    text-align: center;
+    letter-spacing: -10px;
+}
+
+
+/* Gaya umum untuk huruf */
+
+.text .letter {
+    color: #ffd9fc;
+    text-shadow: 0 0 2rem #d900ff, 0 0 10px #ff87ff;
+    display: inline-block;
+    opacity: 0;
+    /* Mulai transparan */
+    animation: fall 0.5s ease-out forwards;
+}
+
+.text .letter:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.text .letter:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.text .letter:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.text .letter:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+.text .letter:nth-child(5) {
+    animation-delay: 0.8s;
+}
+
+.text .letter:nth-child(6) {
+    animation-delay: 1s;
+}
+
+.text .letter:nth-child(7) {
+    animation-delay: 1.2s;
+}
+
+
+/* Huruf kosong pertama */
+
+.text .letter:nth-child(8) {
+    animation-delay: 1.4s;
+}
+
+
+/* Huruf kosong kedua */
+
+.text .letter:nth-child(9) {
+    animation-delay: 1.6s;
+}
+
+.text .letter:nth-child(10) {
+    animation-delay: 1.4s;
+}
+
+.text .letter:nth-child(11) {
+    animation-delay: 1.6s;
+}
+
+
+/* Huruf kosong ketiga */
+
+.text .letter:nth-child(12) {
+    animation-delay: 2.2s;
+}
+
+
+/* Huruf kosong keempat */
+
+.text .letter:nth-child(13) {
+    animation-delay: 2.4s;
+}
+
+.text .letter:nth-child(14) {
+    animation-delay: 1.8s;
+}
+
+.text .letter:nth-child(15) {
+    animation-delay: 2s;
+}
+
+
+/* Huruf kosong kelima */
+
+.text .letter:nth-child(16) {
+    animation-delay: 3s;
+}
+
+
+/* Huruf kosong keenam */
+
+.text .letter:nth-child(17) {
+    animation-delay: 3.2s;
+}
+
+.text .letter:nth-child(18) {
+    animation-delay: 2.2s;
+}
+
+.text .letter:nth-child(19) {
+    animation-delay: 2.4s;
+}
+
+.text .letter:nth-child(20) {
+    animation-delay: 2.6s;
+}
+
+.text .letter:nth-child(21) {
+    animation-delay: 2.8s;
+}
+
+.text .letter:nth-child(22) {
+    animation-delay: 3s;
+}
+
+.text .letter:nth-child(23) {
+    animation-delay: 3.2s;
+}
+
+.text .letter:nth-child(24) {
+    animation-delay: 3.4s;
+}
+
+.text .letter:nth-child(25) {
+    animation-delay: 3.8s;
+}
+
+.text .letter:nth-child(26) {
+    animation-delay: 4s;
+}
+
+
+/* Animasi jatuh */
+
+@keyframes fall {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
