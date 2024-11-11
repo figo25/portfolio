@@ -1,0 +1,124 @@
+/* Reset styling */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Styling navbar */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100000000;
+}
+
+
+/* Logo styling */
+
+.navbar .logo a {
+    color: #3498db;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+
+/* Navbar links */
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.nav-links li {
+    margin-left: 20px;
+    position: relative;
+}
+
+.nav-links a {
+    color: #3498db;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 15px;
+    transition: text-shadow 0.3s;
+}
+
+
+/* Efek visual tambahan dengan elemen pseudo berbentuk jajar genjang */
+
+
+/* Efek visual tambahan dengan elemen pseudo berbentuk trapesium */
+
+
+/* Efek visual tambahan dengan elemen pseudo berbentuk trapesium */
+
+.nav-links li::before {
+    content: '';
+    /* Membuat elemen pseudo kosong untuk sorotan */
+    position: absolute;
+    /* Menempatkan elemen relatif terhadap menu */
+    top: -25px;
+    /* Posisi elemen di atas menu */
+    left: 0;
+    /* Elemen sejajar kiri menu */
+    width: 100%;
+    /* Lebar elemen sesuai menu */
+    height: 40px;
+    /* Tinggi elemen sorotan */
+    background: linear-gradient(to bottom, rgba(52, 152, 219, 1), transparent);
+    /* Gradien biru ke transparan */
+    clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+    /* Membentuk trapesium */
+    opacity: 0;
+    /* Awalnya elemen tidak terlihat */
+    transition: opacity 0.3s ease-in-out;
+    /* Efek transisi halus untuk perubahan opacity */
+}
+
+
+/* Efek rectangle horizontal di atas lampu sorot */
+
+.nav-links li::after {
+    content: '';
+    /* Membuat elemen pseudo kosong untuk rectangle */
+    position: absolute;
+    /* Menempatkan elemen relatif terhadap menu */
+    top: -20px;
+    /* Posisi rectangle di atas lampu sorot */
+    left: 0;
+    /* Rectangle sejajar kiri menu */
+    width: 100%;
+    /* Rectangle selebar menu */
+    height: 5px;
+    /* Tinggi rectangle */
+    background: #3498db;
+    /* Warna biru untuk rectangle */
+    opacity: 0;
+    /* Awalnya elemen tidak terlihat */
+    transition: opacity 0.3s ease-in-out;
+    /* Efek transisi halus untuk perubahan opacity */
+}
+
+
+/* Menampilkan efek sorotan dan rectangle ketika item menu di-hover */
+
+.nav-links li:hover::before,
+.nav-links li:hover::after {
+    opacity: 1;
+    /* Membuat elemen terlihat saat di-hover */
+}
+
+.nav-links a:hover {
+    text-shadow: 0 0 8px #3498db, 0 0 16px #3498db, 0 0 24px #3498db;
+}

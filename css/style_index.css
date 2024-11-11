@@ -103,7 +103,7 @@ p {
 }
 
 .input-field:focus {
-    border-bottom: 2px solid #fae0f7;
+    border-bottom: 2px solid #bdb9f8;
 }
 
 
@@ -126,7 +126,7 @@ p {
 
 .text .letter {
     color: #ffd9fc;
-    text-shadow: 0 0 2rem #d900ff, 0 0 10px #ff87ff;
+    text-shadow: 0 0 2rem #0909FF, 0 0 10px #5977fd;
     display: inline-block;
     opacity: 0;
     /* Mulai transparan */
