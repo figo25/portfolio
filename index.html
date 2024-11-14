@@ -7,84 +7,84 @@
     <title>Particles.js</title>
     <link rel="stylesheet" href="css/style_index.css">
     <link rel="stylesheet" href="css/button.css">
+    <script src="JS/particle.js" defer></script>
+    <script src="JS/particles.js" defer></script>
+</head>
 
-    <body>
-        <div id="particles-js"></div>
+<body>
+    <div id="particles-js"></div>
 
-        <!-- Text message -->
-        <p>
-            "Hello, please enter your name to proceed."
-        </p>
+    <!-- Text message -->
+    <p>
+        "Hello, please enter your name to proceed."
+    </p>
 
-        <!-- Input field -->
-        <div class="input-container">
-            <input type="text" class="input-field" id="nameInput" placeholder="Enter your name" oninput="toggleButton()" />
-            <button class="glowing-btn" id="letsGoButton" style="display:none;" onclick="redirectToWelcome()">
-                <span class="glowing-txt">
-                    L<span class="faulty-letter">E</span>T'S  G<span class="faulty-letter">O
-                    </span>
-                </span>
-            </button>
-        </div>
+    <!-- Input field -->
+    <div class="input-container">
+        <input type="text" class="input-field" id="nameInput" placeholder="Enter your name" />
+        <button class="glowing-btn" id="letsGoButton" style="display:none;" onclick="redirectToWelcome()">
+            <span class="glowing-txt">
+                L<span class="faulty-letter">E</span>T'S  G<span class="faulty-letter">O</span>
+            </span>
+        </button>
+    </div>
 
-        <!-- Teks yang ingin ditambahkan -->
-        <h1 class="text">
-            <span class="letter">W</span>
-            <span class="letter">E</span>
-            <span class="letter">L</span>
-            <span class="letter">C</span>
-            <span class="letter">O</span>
-            <span class="letter">M</span>
-            <span class="letter">E</span>
-            <span class="letter">&nbsp;</span>
-            <span class="letter">&nbsp;</span>
-            <span class="letter">T</span>
-            <span class="letter">O</span>
-            <span class="letter">&nbsp;</span>
-            <span class="letter">&nbsp;</span>
-            <span class="letter">M</span>
-            <span class="letter">Y</span>
-            <span class="letter">&nbsp;</span>
-            <span class="letter">&nbsp;</span>
-            <span class="letter">P</span>
-            <span class="letter">O</span>
-            <span class="letter">R</span>
-            <span class="letter">T</span>
-            <span class="letter">F</span>
-            <span class="letter">O</span>
-            <span class="letter">L</span>
-            <span class="letter">I</span>
-            <span class="letter">O</span>
-        </h1>
+    <!-- Teks yang ingin ditambahkan -->
+    <h1 class="text">
+        <span class="letter">W</span>
+        <span class="letter">E</span>
+        <span class="letter">L</span>
+        <span class="letter">C</span>
+        <span class="letter">O</span>
+        <span class="letter">M</span>
+        <span class="letter">E</span>
+        <span class="letter">&nbsp;</span>
+        <span class="letter">&nbsp;</span>
+        <span class="letter">T</span>
+        <span class="letter">O</span>
+        <span class="letter">&nbsp;</span>
+        <span class="letter">&nbsp;</span>
+        <span class="letter">M</span>
+        <span class="letter">Y</span>
+        <span class="letter">&nbsp;</span>
+        <span class="letter">&nbsp;</span>
+        <span class="letter">P</span>
+        <span class="letter">O</span>
+        <span class="letter">R</span>
+        <span class="letter">T</span>
+        <span class="letter">F</span>
+        <span class="letter">O</span>
+        <span class="letter">L</span>
+        <span class="letter">I</span>
+        <span class="letter">O</span>
+    </h1>
 
-        <!-- Library Particles.js -->
-        <script src="JS/particle.js"></script>
-        <script src="JS/particles.js"></script>
+    <!-- Scripts moved to bottom to ensure page content is loaded first -->
+    <script>
+        // Menunggu hingga halaman sepenuhnya dimuat
+        window.onload = function() {
+            var inputField = document.getElementById("nameInput");
+            var button = document.getElementById("letsGoButton");
 
-        <script>
-            function toggleButton() {
-                var inputField = document.getElementById("nameInput");
-                var button = document.getElementById("letsGoButton");
-
-                // Menyembunyikan tombol jika input kosong, menampilkan jika input tidak kosong
+            // Fungsi untuk toggle tampilan tombol berdasarkan input field
+            inputField.addEventListener('input', function() {
                 if (inputField.value.trim() !== "") {
                     button.style.display = "block"; // Menampilkan tombol
                 } else {
                     button.style.display = "none"; // Menyembunyikan tombol
                 }
-            }
-        </script>
+            });
+        };
 
-        <script>
-            function redirectToWelcome() {
-                const name = document.getElementById("nameInput").value.trim();
-                if (name) {
-                    window.location.href = `landing.html?name=${encodeURIComponent(name)}`;
-                } else {
-                    alert("Harap masukkan nama Anda!");
-                }
+        function redirectToWelcome() {
+            const name = document.getElementById("nameInput").value.trim();
+            if (name) {
+                window.location.href = `landing.html?name=${encodeURIComponent(name)}`;
+            } else {
+                alert("Harap masukkan nama Anda!");
             }
-        </script>
-    </body>
+        }
+    </script>
+</body>
 
 </html>

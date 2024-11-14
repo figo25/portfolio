@@ -76,6 +76,11 @@ document.addEventListener("DOMContentLoaded", function() {
         ball2.rotationDirection *= -1;
     }
 
+    // Fungsi interpolasi untuk perubahan kecepatan halus
+    function interpolateVelocity(current, target, factor) {
+        return current + (target - current) * factor;
+    }
+
     function updateBallPositions() {
         balls.forEach((ball, index) => {
             ball.ballPosition.x += ball.velocity.x;

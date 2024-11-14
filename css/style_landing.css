@@ -1,3 +1,38 @@
+@font-face {
+    font-family: "Liberty";
+    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/907368/liberty.otf');
+}
+
+@font-face {
+    font-family: 'Dubai Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Dubai Regular'), url('font/Dubai-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Dubai Light';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Dubai Light'), url('font/Dubai-Light.ttf') format('truetype');
+}
+
+@keyframes wave-animation {
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-20deg);
+    }
+    50% {
+        transform: rotate(20deg);
+    }
+    75% {
+        transform: rotate(-20deg);
+    }
+}
+
 @keyframes slideInRight {
     0% {
         transform: translateX(100%);
@@ -30,33 +65,37 @@ body {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    padding-left: 100px;
+    padding-left: 0px;
     height: 100vh;
 }
 
 h1 {
+    position: absolute;
+    font-family: Liberty;
+    left: 10px;
+    /* Jarak dari tepi kanan */
+    top: 50px;
+    /* Jarak dari tepi bawah */
     font-size: 3em;
-    color: #f6f6f6;
+    color: #ff3300;
 }
 
 p {
+    position: absolute;
+    font-family: 'Dubai Regular';
+    left: 10px;
+    /* Jarak dari tepi kanan */
+    top: 100px;
     font-size: 1.5em;
-    color: #ffffff;
+    color: #ff0b0b;
 }
 
-button {
-    background-color: #61dafb;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1em;
-    color: #ffffff;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #4e9dc8;
+.wave {
+    font-size: 2rem;
+    /* Ukuran ikon */
+    display: inline-block;
+    animation: wave-animation 2s infinite;
+    /* Animasi berulang */
 }
 
 
@@ -64,23 +103,52 @@ button:hover {
 
 .right-box {
     position: fixed;
-    top: 0;
+    top: 7%;
     right: 0;
-    width: 45%;
-    height: 100%;
-    background-color: #1500ff;
-    background-image: url("../image/bg-box.png");
-    /* Corrected the path */
+    width: 40%;
+    height: 90%;
+    background-image: url(../image/bg-box.png);
+    filter: brightness(50%);
+    opacity: 0.9;
+    /* Gambar latar belakang */
     background-size: cover;
-    /* Optional: Ensures the image covers the whole background */
+    /* Memastikan gambar menutupi seluruh elemen */
     background-position: center;
-    /* Optional: Centers the image in the background */
-    z-index: 1;
-    clip-path: polygon(40% 0, 100% 0, 100% 100%, 0% 100%);
+    /* Memusatkan gambar di dalam elemen */
+    /* Optional: Ensures the image covers the whole background */
+    clip-path: polygon( 25% 0%, /* Kiri atas */
+    75% 0%, /* Kiri tengah atas */
+    100% 0%, /* Kanan atas (datar) */
+    100% 100%, /* Kanan bawah (datar) */
+    75% 100%, /* Kiri tengah bawah */
+    25% 100%, /* Kiri bawah */
+    0% 50%/* Titik kiri tengah */
+    );
     display: flex;
     overflow: hidden;
     animation: slideInRight 1s ease-out;
-    opacity: 30%;
+    /* Menambahkan animasi */
+}
+
+.rectangle {
+    position: fixed;
+    top: 7%;
+    right: 0px;
+    width: 41.5%;
+    height: 90%;
+    background-color: #1500ff;
+    z-index: 0;
+    clip-path: polygon( 25% 0%, /* Kiri atas */
+    75% 0%, /* Kiri tengah atas */
+    100% 0%, /* Kanan atas (datar) */
+    100% 100%, /* Kanan bawah (datar) */
+    75% 100%, /* Kiri tengah bawah */
+    25% 100%, /* Kiri bawah */
+    0% 50%/* Titik kiri tengah */
+    );
+    display: flex;
+    overflow: hidden;
+    animation: slideInRight 1s ease-out;
     /* Menambahkan animasi */
 }
 
@@ -99,26 +167,11 @@ button:hover {
     align-items: center;
     /* Pusatkan secara vertikal */
     animation: spin 5s linear infinite;
+    transition: transform 0.5s ease-in-out;
     /* Animasi rotasi */
-    opacity: 0.8;
+    filter: brightness(70%);
     box-shadow: 0 0 30px rgb(108, 115, 255), 0 0 50px rgb(108, 115, 255);
     /* Bayangan menyeluruh */
-    filter: brightness(0.5);
-}
-
-.rectangle {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 48%;
-    height: 100%;
-    background-image: linear-gradient(111deg, #1500ff 25%, #000000 32%);
-    z-index: 0;
-    clip-path: polygon(37% 0, 100% 0, 100% 100%, 0% 100%);
-    display: flex;
-    overflow: hidden;
-    animation: slideInRight 1s ease-out;
-    /* Menambahkan animasi */
 }
 
 .container {
@@ -141,9 +194,6 @@ button:hover {
     position: absolute;
     top: 50%;
     left: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     transform: translate(-50%, -50%);
     background: linear-gradient(45deg, #1500ff 50%, #ffffff);
     background-size: 300% 300%;
@@ -196,9 +246,6 @@ button:hover {
         background-position: 0% 50%;
     }
 }
-
-
-/* Animasi Pergerakan */
 
 
 /* Pesan sambutan */

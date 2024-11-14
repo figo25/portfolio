@@ -13,13 +13,12 @@
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 1);
     color: white;
-    padding: 15px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 100000000;
+    z-index: 100;
 }
 
 
@@ -27,8 +26,9 @@
 
 .navbar .logo a {
     color: #3498db;
-    font-size: 24px;
+    font-size: 20px;
     text-decoration: none;
+    margin-left: 20px;
 }
 
 
@@ -42,83 +42,72 @@
 }
 
 .nav-links li {
-    margin-left: 20px;
+    margin-left: 10px;
     position: relative;
 }
 
 .nav-links a {
+    position: relative;
+    display: inline-block;
+    padding: 10px 15px;
+    /* Area klik */
     color: #3498db;
     text-decoration: none;
-    font-size: 18px;
-    padding: 10px 15px;
-    transition: text-shadow 0.3s;
+    font-size: 15px;
+    z-index: 1;
 }
 
-
-/* Efek visual tambahan dengan elemen pseudo berbentuk jajar genjang */
-
-
-/* Efek visual tambahan dengan elemen pseudo berbentuk trapesium */
-
-
-/* Efek visual tambahan dengan elemen pseudo berbentuk trapesium */
-
-.nav-links li::before {
-    content: '';
-    /* Membuat elemen pseudo kosong untuk sorotan */
+.nav-links a .menu-bg {
     position: absolute;
     /* Menempatkan elemen relatif terhadap menu */
     top: -25px;
-    /* Posisi elemen di atas menu */
+    /* Posisi efek di atas teks */
     left: 0;
     /* Elemen sejajar kiri menu */
     width: 100%;
     /* Lebar elemen sesuai menu */
-    height: 40px;
-    /* Tinggi elemen sorotan */
+    height: 35px;
+    /* Ukuran efek */
     background: linear-gradient(to bottom, rgba(52, 152, 219, 1), transparent);
     /* Gradien biru ke transparan */
     clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
-    /* Membentuk trapesium */
+    /* Bentuk trapesium */
     opacity: 0;
-    /* Awalnya elemen tidak terlihat */
+    /* Tidak terlihat secara default */
     transition: opacity 0.3s ease-in-out;
-    /* Efek transisi halus untuk perubahan opacity */
+    z-index: 0;
+    /* Pastikan di bawah teks */
 }
 
-
-/* Efek rectangle horizontal di atas lampu sorot */
-
-.nav-links li::after {
-    content: '';
-    /* Membuat elemen pseudo kosong untuk rectangle */
-    position: absolute;
-    /* Menempatkan elemen relatif terhadap menu */
-    top: -20px;
-    /* Posisi rectangle di atas lampu sorot */
-    left: 0;
-    /* Rectangle sejajar kiri menu */
-    width: 100%;
-    /* Rectangle selebar menu */
-    height: 5px;
-    /* Tinggi rectangle */
-    background: #3498db;
-    /* Warna biru untuk rectangle */
-    opacity: 0;
-    /* Awalnya elemen tidak terlihat */
-    transition: opacity 0.3s ease-in-out;
-    /* Efek transisi halus untuk perubahan opacity */
-}
-
-
-/* Menampilkan efek sorotan dan rectangle ketika item menu di-hover */
-
-.nav-links li:hover::before,
-.nav-links li:hover::after {
+.nav-links a:hover .menu-bg {
     opacity: 1;
-    /* Membuat elemen terlihat saat di-hover */
+    /* Efek terlihat saat hover */
 }
 
 .nav-links a:hover {
-    text-shadow: 0 0 8px #3498db, 0 0 16px #3498db, 0 0 24px #3498db;
+    text-shadow: 0 2px 6px #3498db, 0 2px 15px #3498db, 0 1px 20px #3498db;
+}
+
+.nav-links li::before {
+    content: '';
+    /* Membuat elemen pseudo kosong untuk rectangle */
+    position: absolute;
+    top: 0;
+    /* Ubah posisi mulai dari atas */
+    left: 0;
+    /* Rectangle sejajar kiri menu */
+    width: 100%;
+    height: 25px;
+    /* Tinggi sorotan diperbesar */
+    background: linear-gradient(to bottom, rgba(52, 152, 219, 0.6), transparent);
+    clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+    opacity: 0;
+    /* Awalnya elemen tidak terlihat */
+    transition: opacity 0.3s ease-in-out;
+    z-index: 0;
+}
+
+.nav-links li:hover::before {
+    opacity: 1;
+    /* Sorotan terlihat saat hover */
 }

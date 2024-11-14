@@ -11,9 +11,8 @@
 <body>
     <div id="navbar-container"></div>
     <!-- SVG Background -->
-    <h1 style="color: #f6f6f6;" id="welcomeMessage">Selamat Datang!</h1>
-    <p>Senang bertemu dengan Anda.</p>
-    <button onclick="goBack()">Kembali</button>
+    <h1 style="color: #00c3f9;" id="welcomeMessage">Hi <span class="wave">👋</span></h1>
+    <p>I am Ahmad Figo</p>
     <div class="rectangle"></div>
     <div class="right-box">
         <!-- Bola di dalam kotak -->
@@ -30,50 +29,33 @@
             // Menampilkan pesan sambutan dengan nama
             const welcomeMessage = document.getElementById("welcomeMessage");
             if (name) {
-                welcomeMessage.innerText = `Selamat Datang, ${name}!`;
-            }
-
-            // Fungsi kembali ke halaman utama
-            function goBack() {
-                window.location.href = 'index.html';
+                // Gunakan innerHTML agar tag HTML dalam string dirender
+                welcomeMessage.innerHTML = `Hi ${name} <span class="wave">👋</span>`;
             }
         </script>
+
 
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 const navbarContainer = document.getElementById("navbar-container");
-                console.log("Navbar container:", navbarContainer); // Menambahkan log untuk memverifikasi elemen ini ada
-
-                fetch("navbar.html")
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error("HTTP error " + response.status);
-                        }
-                        return response.text();
-                    })
-                    .then(data => {
-                        navbarContainer.innerHTML = data;
-                        console.log("Navbar content loaded:", data); // Menambahkan log untuk memastikan file dimuat
-                    })
-                    .catch(error => {
-                        console.error("Error loading navbar:", error);
-                    });
+                if (navbarContainer) {
+                    fetch("navbar.html")
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error("HTTP error " + response.status);
+                            }
+                            return response.text();
+                        })
+                        .then(data => {
+                            navbarContainer.innerHTML = data;
+                        })
+                        .catch(error => {
+                            console.error("Error loading navbar:", error);
+                        });
+                } else {
+                    console.error("Navbar container not found");
+                }
             });
-            fetch("navbar.html")
-                .then(response => {
-                    console.log("Response status:", response.status); // Menambahkan log untuk status respons
-                    if (!response.ok) {
-                        throw new Error("HTTP error " + response.status);
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    console.log("Navbar content:", data); // Menambahkan log untuk konten yang dimuat
-                    navbarContainer.innerHTML = data;
-                })
-                .catch(error => {
-                    console.error("Error loading navbar:", error);
-                });
         </script>
 
 

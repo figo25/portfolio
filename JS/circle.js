@@ -40,8 +40,8 @@ function moveCircle() {
         getRandomSide();
 
         // Kecepatan gerakan
-        const speedX = Math.random() * 3 + 2; // Kecepatan horizontal (2-5 px/frame)
-        const speedY = Math.random() * 3 + 2; // Kecepatan vertikal (2-5 px/frame)
+        const speedX = Math.random() * 2 + 1; // Kecepatan horizontal (2-5 px/frame)
+        const speedY = Math.random() * 2 + 1; // Kecepatan vertikal (2-5 px/frame)
 
         // Set posisi awal
         circle.style.left = `${x}px`;
