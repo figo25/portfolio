@@ -6,58 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <link rel="stylesheet" href="css/style_landing.css">
+    <script src="JS/script.js" defer></script>
 </head>
 
+
 <body>
-    <div id="navbar-container"></div>
-    <!-- SVG Background -->
-    <h1 style="color: #00c3f9;" id="welcomeMessage">Hi <span class="wave">👋</span></h1>
-    <p>I am Ahmad Figo</p>
-    <div class="rectangle"></div>
-    <div class="right-box">
-        <!-- Bola di dalam kotak -->
-        <script src="JS/ball.js"></script>
+    <!-- Konten Utama -->
+    <h1 id="welcomeMessage">Hi</h1>
+    <p>
+        I am <span class="name">Ahmad Figo</span> <span class="hand">👋</span>
+    </p>
+    <p class="body-text">
+        Possesses core expertise in UI/UX design, complemented by additional skills as a proficient front-end developer specializing in HTML, CSS, and JavaScript.
+    </p>
+    <button class="download-cv-button">Download CV</button>
+
+
+
+    <!-- Gambar di sisi kanan -->
+    <div class="image-container">
+        <!-- Elemen bayangan -->
+        <div class="image-flip">
+            <img src="../image/image1.png" alt="Front Image" class="front">
+            <img src="../image/image2.png" alt="Back Image" class="back">
+        </div>
+        <img src="../image/figma.png" class="small-image small-image-1" alt="Gambar Kecil 1">
+        <img src="../image/html.png" class="small-image small-image-2" alt="Gambar Kecil 2">
+        <img src="../image/css.png" class="small-image small-image-3" alt="Gambar Kecil 3">
+        <img src="../image/js.png" class="small-image small-image-4" alt="Gambar Kecil 4">
+        <img src="../image/ps.png" class="small-image small-image-5" alt="Gambar Kecil 5">
+
     </div>
-    <div class="circle">
-        <div class="background-circle"></div>
-        <script src="JS/circle.js"></script>
-        <script>
-            // Mengambil nama dari parameter URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const name = urlParams.get('name');
-
-            // Menampilkan pesan sambutan dengan nama
-            const welcomeMessage = document.getElementById("welcomeMessage");
-            if (name) {
-                // Gunakan innerHTML agar tag HTML dalam string dirender
-                welcomeMessage.innerHTML = `Hi ${name} <span class="wave">👋</span>`;
-            }
-        </script>
-
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                const navbarContainer = document.getElementById("navbar-container");
-                if (navbarContainer) {
-                    fetch("navbar.html")
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error("HTTP error " + response.status);
-                            }
-                            return response.text();
-                        })
-                        .then(data => {
-                            navbarContainer.innerHTML = data;
-                        })
-                        .catch(error => {
-                            console.error("Error loading navbar:", error);
-                        });
-                } else {
-                    console.error("Navbar container not found");
-                }
-            });
-        </script>
-
+    <div class="button-container">
+        <button class="stacked-button">Socials</button>
+        <button class="stacked-button" onclick="window.open('https://wa.me/628812865065?text=Halo!%20Saya%20ingin%20menghubungi%20Anda.', '_blank')"></button>
+        <button class="stacked-button"></button>
+        <button class="stacked-button"></button>
+        <button class="stacked-button"></button>
+    </div>
 
 </body>
 

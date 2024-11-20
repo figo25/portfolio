@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Layout</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            background-image: url('../image/bg-langit.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        /* #welcomeMessage berada di tengah secara dinamis */
+        
+        #welcomeMessage {
+            font-size: 40px;
+            font-weight: bold;
+            color: white !important;
+            background: linear-gradient(180deg, rgba(0, 17, 255, 0.5), rgba(0, 0, 0, 0.5));
+            border: 3px solid #00AEFF;
+            border-radius: 20px;
+            padding: 10px 20px;
+            margin: 20px 0;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        /* Efek hover untuk welcomeMessage */
+        
+        #welcomeMessage:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 17, 255, 0.8);
+        }
+        
+        p {
+            text-align: center;
+            color: #ffffff;
+            margin: 10px 0;
+        }
+        
+        .name {
+            color: #00AEFF;
+            font-size: 55px;
+            font-family: "Lemon";
+        }
+        
+        .body-text {
+            font-size: 20px;
+            color: #aeaeae;
+            font-family: "Doppio One";
+            max-width: 60%;
+            text-align: center;
+            margin-top: 10px;
+            animation: blink-caret 0.7s step-end infinite;
+        }
+        /* Tombol berada di bawah dengan jarak teratur */
+        
+        .download-cv-button {
+            font-family: "Doppio One";
+            color: #0011FF;
+            background-color: black;
+            border: 3px solid #0011FF;
+            padding: 13px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 20px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .download-cv-button:hover {
+            background-color: #0011FF;
+            border: 3px solid #ffffff;
+            color: #ffffff;
+            box-shadow: 0 0 30px rgba(0, 17, 255, 0.8), 0 0 80px rgba(0, 0, 255, 0.8);
+        }
+        /* Kontainer untuk tombol sosial */
+        
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .stacked-button {
+            width: 55px;
+            height: 55px;
+            border: 3px solid #0011FF;
+            border-radius: 50%;
+            background-color: black;
+            background-size: 35px 35px;
+            background-position: center;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .stacked-button:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(0, 17, 255, 0.8);
+        }
+        /* Lingkaran blur dengan posisi dinamis */
+        
+        .blur-circle {
+            width: 150px;
+            height: 150px;
+            background-color: #007bff;
+            border-radius: 50%;
+            filter: blur(15px);
+            position: absolute;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .blur-circle:nth-child(1) {
+            top: 10%;
+            left: 20%;
+        }
+        
+        .blur-circle:nth-child(2) {
+            bottom: 15%;
+            right: 25%;
+        }
+        
+        .blur-circle:nth-child(3) {
+            top: 50%;
+            right: 10%;
+        }
+        /* Animasi lingkaran */
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="welcomeMessage">Hi</h1>
+    <p>I am <span class="name">Ahmad Figo</span> <span class="wave">👋</span></p>
+    <p class="body-text">Possesses core expertise in UI/UX design, complemented by additional skills as a proficient front-end developer specializing in HTML, CSS, and JavaScript.</p>
+    <button class="download-cv-button">Download CV</button>
+    <div class="button-container">
+        <div class="stacked-button"></div>
+        <div class="stacked-button"></div>
+        <div class="stacked-button"></div>
+        <div class="stacked-button"></div>
+    </div>
+    <div class="blur-circle"></div>
+    <div class="blur-circle"></div>
+    <div class="blur-circle"></div>
+</body>
+
+</html>

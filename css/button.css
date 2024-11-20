@@ -210,3 +210,126 @@ body {
         font-size: 1em;
     }
 }
+
+
+/*style button socials*/
+
+.button-container {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    top: 40%;
+    right: 45%;
+}
+
+.stacked-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 45px;
+    height: 45px;
+    background-color: black;
+    background-size: 30px 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid #0011FF;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border 0.3s ease, color 0.3s ease;
+}
+
+.stacked-button:nth-child(1) {
+    z-index: 5;
+    color: #0011FF;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 45px;
+    cursor: default;
+}
+
+.stacked-button:nth-child(2) {
+    background-image: url("../image/wa-blue.png");
+    transform: translateX(2px);
+    z-index: 4;
+}
+
+.stacked-button:nth-child(3) {
+    background-image: url("../image/ig-blue.png");
+    transform: translateX(4px);
+    z-index: 3;
+}
+
+.stacked-button:nth-child(4) {
+    background-image: url("../image/in-blue.png");
+    transform: translateX(6px);
+    z-index: 2;
+}
+
+.stacked-button:nth-child(5) {
+    background-image: url("../image/git-blue.png");
+    transform: translateX(8px);
+    z-index: 1;
+}
+
+.button-container:hover .stacked-button:nth-child(1) {
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    background-color: #0011FF;
+}
+
+.button-container:hover .stacked-button:nth-child(2) {
+    transform: translateX(60px);
+}
+
+.button-container:hover .stacked-button:nth-child(3) {
+    transform: translateX(120px);
+}
+
+.button-container:hover .stacked-button:nth-child(4) {
+    transform: translateX(180px);
+}
+
+.button-container:hover .stacked-button:nth-child(5) {
+    transform: translateX(240px);
+}
+
+.stacked-button:nth-child(n+2):hover {
+    box-shadow: 0 0 30px 15px rgba(0, 17, 255, 0.7);
+    background-color: #0011FF;
+    border: 2px solid #FFFFFF;
+}
+
+.stacked-button:nth-child(2):hover {
+    background-image: url("../image/wa-white.png");
+}
+
+.stacked-button:nth-child(3):hover {
+    background-image: url("../image/ig-white.png");
+}
+
+.stacked-button:nth-child(4):hover {
+    background-image: url("../image/in-white.png");
+}
+
+.stacked-button:nth-child(5):hover {
+    background-image: url("../image/git-white.png");
+}
+
+.button-container:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 250px;
+    height: 50px;
+    background: black;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.button-container:hover:before {
+    pointer-events: all;
+}
