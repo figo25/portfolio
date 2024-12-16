@@ -1,27 +1,26 @@
     @font-face {
-        font-family: "Liberty";
-        src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/907368/liberty.otf');
+        font-family: "Nico Moji";
+        src: url('../font/NicoMoji-Regular.ttf');
     }
     
     @font-face {
-        font-family: 'Doppio One';
-        font-style: normal;
-        font-weight: normal;
-        src: local('Doppio One'), url('../font/DoppioOne-Regular.ttf') format('truetype');
+        font-family: "Livvic Medium";
+        src: url('../font/Livvic-Medium.ttf');
     }
     
     @font-face {
-        font-family: 'Lemon';
-        font-style: normal;
-        font-weight: normal;
-        src: local('Lemon'), url('../font/Lemon-Regular.ttf') format('truetype');
+        font-family: "Livvic regular";
+        src: url('../font/Livvic-Regular.ttf');
+    }
+    
+    @font-face {
+        font-family: "Livvic semobold";
+        src: url('../font/Livvic-SemiBold.ttf');
     }
     
     body {
         margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #000000;
-        background-image: url('../image/bg-langit.png');
+        background-color: rgba(0, 9, 38, 1);
         background-repeat: no-repeat;
         background-position: center center;
         background-attachment: fixed;
@@ -31,38 +30,350 @@
         flex-direction: column;
         padding-left: 0px;
         height: 100vh;
-        border: 2px solid gold;
     }
     /* Warna teks untuk #welcomeMessage */
     
-    #welcomeMessage {
+    .header {
+        position: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        left: 50%;
+        transform: translateX(-50%);
+        gap: 28.6%;
+        /* Ubah gap agar lebih rapat jika diperlukan */
+        width: 80%;
+        /* Agar header meluas ke seluruh lebar layar */
+        top: 0;
+        /* Menjaga posisi header di bagian atas */
+        z-index: 1;
+        /* Pastikan header tetap di atas konten lainnya */
+        border: 1px solid red;
+        /* Untuk memudahkan debugging */
+    }
+    
+    .logo-container {
+        display: flex;
+        align-items: center;
+        margin-top: -15px;
+    }
+    
+    .logo {
+        width: 47px;
+        height: auto;
+    }
+    
+    .lamp-image {
+        width: 50px;
+        height: auto;
+        cursor: pointer;
+    }
+    
+    .navbar {
         position: relative;
-        font-size: 2vw;
-        font-weight: bold;
+        top: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 4, 255, 0.3);
+        padding: 9px;
         display: inline-block;
-        padding: 10px 20px;
-        color: white !important;
-        /* Warna teks putih */
-        background: linear-gradient(180deg, rgba(0, 17, 255, 0.5), rgba(0, 0, 0, 0.5));
-        border: 3px solid #00AEFF;
-        /* Gradiasi warna */
-        /* Warna latar belakang */
         border-radius: 20px;
-        /* Membuat sudut melengkung */
-        /* Bayangan */
-        transition: width 0.3s ease;
-        margin-top: 150px;
-        /* Pindahkan sedikit ke bawah */
-        margin-left: 7%;
-        /* Pindahkan sedikit ke kanan */
+        margin-top: -15px;
+        z-index: 2;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    /* Area setengah lingkaran */
+    
+    .nav-list {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .nav-list li {
+        margin: 0 15px;
+        position: relative;
+    }
+    
+    .nav-list a {
+        font-family: 'livvic medium';
+        color: #BDBCBC;
+        text-decoration: none;
+        font-size: 15px;
+        padding: 5px 0;
+        position: relative;
+        transition: color 0.3s ease;
+    }
+    
+    .nav-list a.active {
+        color: rgba(182, 232, 255, 1);
+        text-shadow: 0 4px 5px rgba(0, 174, 255, 1), 0 0 10px rgba(0, 174, 255, 0.6), 0 0 15px rgba(0, 174, 255, 0.3);
+        transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+    
+    .nav-list a::after,
+    .nav-list a::before {
+        content: '';
+        position: absolute;
+        top: -5.5px;
+        transition: opacity 0.3s ease, height 0.3s ease;
+    }
+    
+    .nav-list a::after {
+        height: 3px;
+        left: 8px;
+        right: 8px;
+        background: rgba(0, 174, 255, 1);
+        border-radius: 3px;
+        opacity: 0;
+    }
+    
+    .nav-list a::before {
+        height: 5px;
+        left: -3px;
+        right: -3px;
+        background: linear-gradient(rgba(0, 174, 255, 1) 20%, rgba(0, 174, 255, 0.5) 50%, transparent 100%);
+        clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
+        opacity: 0;
+    }
+    
+    .nav-list a.active::before {
+        opacity: 1;
+        height: 20px;
+    }
+    
+    .nav-list a.active::after {
+        opacity: 1;
+    }
+    
+    .language-switcher {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 20px;
+        margin-left: 15px;
+    }
+    
+    #language-toggle {
+        display: none;
+    }
+    
+    .toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+        background: rgb(112, 124, 255);
+        border-radius: 50px;
+        padding: 2px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+    
+    .toggle img {
+        position: absolute;
+        width: 17px;
+        height: 17px;
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+    }
+    
+    #language-toggle:checked+.toggle img {
+        transform: translateX(29px);
+    }
+    
+    #language-toggle:checked+.toggle {
+        background: rgba(0, 174, 255, 1);
+    }
+    
+    .language-en,
+    .language-id {
+        font-family: 'livvic medium';
+        font-size: 12px;
+        font-weight: bold;
+        color: #fff;
+        position: absolute;
+        transition: opacity 0.3s ease;
+    }
+    
+    .language-en {
+        left: 10px;
+        opacity: 0;
+    }
+    
+    .language-id {
+        right: 10px;
+        opacity: 1;
+    }
+    
+    #language-toggle:checked+.toggle .language-en {
+        opacity: 1;
+    }
+    
+    #language-toggle:checked+.toggle .language-id {
+        opacity: 0;
+    }
+    
+    .half-circle {
+        position: absolute;
+        bottom: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 40px;
+        background-color: rgba(0, 4, 255, 0.3);
+        border-radius: 20px;
+        clip-path: polygon(0% 38%, 0% 100%, 100% 100%, 100% 38%);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        z-index: 1;
+    }
+    /* Saat navbar terbuka (hover) */
+    
+    .navbar.open .half-circle {
+        width: 120px;
+        height: 40px;
+        border-radius: 20px;
+        clip-path: polygon(0% 38%, 0% 100%, 100% 100%, 100% 38%);
+    }
+    /* Ikon Nada Lagu */
+    
+    .icon-music {
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 15px;
+        color: rgba(0, 174, 255, 1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+    /* Player Buttons */
+    
+    .navbar.open .icon-music {
+        justify-content: space-between;
+        width: 85px;
+        cursor: pointer;
+        z-index: 2;
+    }
+    /* Warna Biru untuk ikon ketika musik diputar */
+    
+    .icon-music.playing {
+        color: rgba(0, 174, 255, 1);
+    }
+    /* Warna Putih untuk ikon ketika musik dipause */
+    
+    .icon-music.paused {
+        color: white;
+    }
+    
+    @media screen and (max-width: 768px) {
+        .nav-list {
+            flex-direction: row;
+            justify-content: center;
+            padding: 0;
+        }
+        .nav-list li {
+            margin: 0 10px;
+        }
+        .language-switcher {
+            margin-left: 20px;
+        }
+    }
+    
+    @media screen and (max-width: 400px) {
+        .navbar {
+            position: relative;
+            top: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 4, 255, 0.3);
+            padding: 9px;
+            display: inline-block;
+            border-radius: 20px;
+            margin-top: -15px;
+            z-index: 2;
+        }
+        .nav-list a {
+            font-size: 0;
+            padding: 15px;
+            top: -7px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            text-align: center;
+            margin: 1.5vw;
+        }
+        .nav-list a::after {
+            height: 3px;
+            left: 4px;
+            right: 4px;
+        }
+        .nav-list a[href="#home"] {
+            background-image: url('../image/home.png');
+        }
+        .nav-list a[href="#about"] {
+            background-image: url('../image/about.png');
+        }
+        .nav-list a[href="#portfolio"] {
+            background-image: url('../image/portfolio.png');
+        }
+        .nav-list a[href="#contact"] {
+            background-image: url('../image/contack.png');
+        }
+        .nav-list a.clicked[href="#home"] {
+            background-image: url('../image/home-active.png');
+        }
+        .nav-list a.clicked[href="#about"] {
+            background-image: url('../image/about-active.png');
+        }
+        .nav-list a.clicked[href="#portfolio"] {
+            background-image: url('../image/portfolio-active.png');
+        }
+        .nav-list a.clicked[href="#contact"] {
+            background-image: url('../image/contact-active.png');
+        }
+    }
+    
+    .main-container {
+        max-width: 700px;
+        position: absolute;
+        top: 20%;
+        left: 10%;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
         border: 2px solid red;
+    }
+    
+    #welcomeMessage {
+        font-family: "Nico Moji";
+        margin: 0;
+        padding: 8px 15px;
+        position: relative;
+        font-size: 2.1vw;
+        font-weight: bold;
+        color: white;
+        background-color: rgba(0, 174, 255, 1);
+        border-radius: 15px;
+        transition: width 0.3s ease;
     }
     /* Gaya untuk elemen span dengan class 'wave' */
     
     .hand {
         display: inline-block;
         animation: hand-animation 1s infinite;
-        border: 2px solid red;
     }
     /* Contoh animasi untuk emoji melambai */
     
@@ -87,47 +398,40 @@
     
     #welcomeMessage+p {
         color: #ffffff;
-        font-size: 4vw;
-        font-family: "Doppio One";
-        margin-left: 7%;
-        /* Sesuaikan ukuran jika diperlukan */
-        margin-top: 1px;
+        font-size: 3vw;
+        font-family: "Livvic regular";
+        margin-top: 2%;
         max-width: 100%;
-        border: 2px solid red;
     }
     
     .name {
-        color: #00AEFF;
-        font-size: 4.5vw;
-        font-family: "Lemon";
-        margin-left: 0%;
-        border: 2px solid red;
+        color: rgba(0, 174, 255, 1);
+        font-size: 3vw;
+        font-family: "Nico Moji";
     }
     /* Gaya untuk teks p yang paling bawah */
     
+    p {
+        margin: 0;
+    }
+    
     .body-text {
-        font-size: 2vw;
-        color: #aeaeae;
-        font-family: "Doppio One";
-        margin-left: 7%;
-        margin-top: -30px;
-        animation: blink-caret 0.7s step-end infinite;
-        max-width: 40%;
-        border: 2px solid red;
+        font-size: 1.5vw;
+        color: rgba(128, 128, 128, 1);
+        font-family: "Livvic regular";
+        margin-top: 5%;
     }
     
     .download-cv-button {
-        font-family: "Doppio One";
-        color: #0011FF;
-        background-color: black;
-        border: 3px solid #0011FF;
+        font-family: "Livvic semobold";
+        color: rgba(0, 174, 255, 1);
+        background-color: transparent;
+        border: 3px solid rgba(0, 174, 255, 1);
         padding: 13px 20px;
         font-size: 16px;
         cursor: pointer;
         border-radius: 20px;
-        margin-top: 60px;
-        margin-left: 7%;
-        border: 2px solid red;
+        margin-top: 20%;
     }
     
     .download-cv-button:hover {
@@ -137,17 +441,15 @@
         color: rgb(255, 255, 255);
         /* Lighter blue on hover */
         box-shadow: 0 0 30px -8px rgb(213, 213, 254), 0 0 80px rgba(0, 0, 255, 0.9), 0 0 100px rgba(0, 0, 255, 0.8);
-        border: 2px solid red;
     }
     /*style button socials*/
     
     .button-container {
         position: absolute;
-        top: 68%;
-        left: 18%;
-        width: 55px;
-        height: 55px;
-        border: 2px solid red;
+        top: 87.6%;
+        left: 24%;
+        width: 54px;
+        height: 52px;
     }
     
     .stacked-button {
@@ -156,115 +458,99 @@
         left: 0;
         width: 55px;
         height: 55px;
-        background-color: black;
+        background-color: rgba(0, 9, 38, 1);
         background-size: 35px 35px;
         background-position: center;
         background-repeat: no-repeat;
-        border: 3px solid #0011FF;
+        border: 3px solid rgba(0, 174, 255, 1);
         border-radius: 50%;
         cursor: pointer;
         transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border 0.3s ease, color 0.3s ease;
-        border: 2px solid red;
     }
     
     .stacked-button:nth-child(1) {
         z-index: 5;
-        color: #0011FF;
-        font-family: "Doppio One";
+        color: rgba(0, 174, 255, 1);
+        font-family: "Livvic regular";
         font-size: 12px;
         font-weight: bold;
         text-align: center;
         cursor: default;
-        border: 3px solid #0011FF;
+        border: 3px solid rgba(0, 174, 255, 1);
         /* Menambahkan Flexbox untuk menengahkan teks */
         display: flex;
         align-items: center;
         /* Vertikal */
         justify-content: center;
         /* Horizontal */
-        border: 2px solid red;
     }
     
     .stacked-button:nth-child(2) {
         background-image: url("../image/wa-blue.png");
         transform: translateX(1px);
         z-index: 4;
-        border: 2px solid red;
     }
     
     .stacked-button:nth-child(3) {
         background-image: url("../image/ig-blue.png");
         transform: translateX(2px);
         z-index: 3;
-        border: 2px solid red;
     }
     
     .stacked-button:nth-child(4) {
         background-image: url("../image/in-blue.png");
         transform: translateX(3px);
         z-index: 2;
-        border: 2px solid red;
     }
     
     .stacked-button:nth-child(5) {
         background-image: url("../image/git-blue.png");
         transform: translateX(4px);
         z-index: 1;
-        border: 2px solid red;
     }
     
     .button-container:hover .stacked-button:nth-child(1) {
         color: #FFFFFF;
         border: 3px solid #FFFFFF;
         background-color: #0011FF;
-        border: 2px solid red;
     }
     
     .button-container:hover .stacked-button:nth-child(2) {
         transform: translateX(70px);
-        border: 2px solid red;
     }
     
     .button-container:hover .stacked-button:nth-child(3) {
         transform: translateX(140px);
-        border: 2px solid red;
     }
     
     .button-container:hover .stacked-button:nth-child(4) {
         transform: translateX(210px);
-        border: 2px solid red;
     }
     
     .button-container:hover .stacked-button:nth-child(5) {
         transform: translateX(280px);
-        border: 2px solid red;
     }
     
     .stacked-button:nth-child(n+2):hover {
         box-shadow: 0 0 30px -8px rgb(213, 213, 254), 0 0 50px rgba(0, 0, 255), 0 0 80px rgba(0, 0, 255);
         background-color: #0011FF;
         border: 3px solid #FFFFFF;
-        border: 2px solid red;
     }
     
     .stacked-button:nth-child(2):hover {
         background-image: url("../image/wa-white.png");
-        border: 2px solid red;
     }
     
     .stacked-button:nth-child(3):hover {
         background-image: url("../image/ig-white.png");
-        border: 2px solid red;
     }
     
     .stacked-button:nth-child(4):hover {
         background-image: url("../image/in-white.png");
-        border: 2px solid red;
     }
     
     .stacked-button:nth-child(5):hover {
         background-image: url("../image/git-white.png");
-        border: 2px solid red;
     }
     
     .button-container:before {
@@ -278,245 +564,60 @@
         height: 55px;
         z-index: 1;
         pointer-events: none;
-        border: 2px solid red;
     }
     
     .button-container:hover:before {
         pointer-events: all;
-        border: 2px solid red;
     }
     
-    @keyframes float {
-        0% {
-            transform: translateY(-70%) translateY(0px);
-        }
-        50% {
-            transform: translateY(-70%) translateY(-50px);
-        }
-        100% {
-            transform: translateY(-70%) translateY(0px);
-        }
-    }
-    
-    @keyframes glow {
-        0% {
-            box-shadow: 0 0 10px rgba(0, 0, 255, 0.5), 0 0 10px rgba(0, 0, 255, 0.4), 0 0 30px rgba(0, 0, 255, 0.3);
-        }
-        50% {
-            box-shadow: 0 0 10px rgba(0, 0, 255, 0.8), 0 0 20px rgba(0, 0, 255, 0.7), 0 0 60px rgba(0, 0, 255, 0.6);
-        }
-        100% {
-            box-shadow: 0 0 10px rgba(0, 0, 255, 0.5), 0 0 10px rgba(0, 0, 255, 0.4), 0 0 30px rgba(0, 0, 255, 0.3);
-        }
-    }
-    
-    .image-container {
+    .container {
         position: absolute;
-        right: 10vw;
-        /* Gunakan vw untuk posisi dinamis berdasarkan lebar layar */
-        top: 50vh;
-        /* Gunakan vh untuk posisi vertikal dinamis */
-        transform: translateY(-50%);
-        width: 30vw;
-        height: 30vw;
-        perspective: 1000px;
-        animation: float 3s ease-in-out infinite, glow 2s ease-in-out infinite;
-        border-radius: 30px;
-        z-index: 2;
+        left: 105%;
+        /* Berada di luar dan beri jarak 20px */
+        top: -5%;
+        /* Sejajar atas dengan .main-container */
+        width: 500px;
+        height: 500px;
+        /* Tambahkan warna untuk visualisasi */
         border: 2px solid red;
     }
     
-    .image-flip {
+    .container img {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        transform-style: preserve-3d;
-        overflow: hidden;
-        border: 2px solid rgb(76, 0, 255);
+        animation: rotateScale 15s linear infinite;
     }
     
-    .image-container:hover .image-flip {
-        transform: scale(1);
-        border: 2px solid red;
-    }
-    
-    .image-flip img {
-        position: absolute;
+    .container img:nth-child(2) {
+        animation-direction: reverse;
         width: 100%;
         height: 100%;
-        backface-visibility: hidden;
-        object-fit: cover;
-        border-radius: 1.5vw;
-        transition: opacity 0.5s ease, transform 0.5s ease;
-        border: 2px solid red;
+        animation-duration: 10s;
     }
     
-    .image-flip .front {
-        transform: scale(1);
-        opacity: 1;
-        border: 2px solid red;
-    }
-    
-    .image-flip .back {
-        transform: scale(0);
-        opacity: 1;
-        border: 2px solid red;
-    }
-    
-    .image-container:hover:not(:has(.small-image:hover)) .image-flip .front {
-        transform: scale(1);
-        opacity: 1;
-        border: 2px solid red;
-    }
-    
-    .image-container:hover:not(:has(.small-image:hover)) .image-flip .back {
-        transform: scale(1);
-        opacity: 1;
-        border: 2px solid red;
-    }
-    
-    .small-image {
-        position: absolute;
-        width: 6vw;
-        /* Ukuran gambar kecil dinamis */
-        height: 6vw;
-        object-fit: cover;
-        z-index: 1;
-        animation: float 3s ease-in-out infinite;
-        border: 2px solid red;
-    }
-    
-    .small-image-1 {
-        top: 115%;
-        right: 82%;
-        border: 2px solid rgb(0, 255, 47);
-    }
-    
-    .small-image-2 {
+    .container img:nth-child(3) {
+        opacity: 70%;
+        z-index: -1;
+        width: 65%;
+        height: 85%;
         top: 50%;
-        right: -20%;
-        border: 2px solid red;
-    }
-    
-    .small-image-3 {
-        top: 60%;
-        left: -10%;
-        border: 2px solid red;
-    }
-    
-    .small-image-4 {
-        bottom: -40%;
-        right: 10%;
+        left: 50%;
         transform: translate(-50%, -50%);
-        border: 2px solid red;
+        animation: none;
+        /* Gambar ketiga tanpa animasi */
     }
     
-    .small-image-5 {
-        bottom: -10%;
-        right: 50%;
-        transform: translate(-50%, -50%);
-        border: 2px solid red;
-    }
-    /* Media Queries untuk responsivitas tambahan */
-    
-    @media (max-width: 768px) {
-        .image-container {
-            right: 8vw;
-            top: 30vh;
-            width: 30vw;
-            height: 30vw;
+    @keyframes rotateScale {
+        0% {
+            transform: rotate(0deg) scale(1);
         }
-        .small-image {
-            width: 8vw;
-            height: 8vw;
+        50% {
+            transform: rotate(180deg) scale(1.2);
         }
-        #welcomeMessage {
-            font-size: 2vw;
-            margin-top: 10vh;
-            margin-left: 7vw;
-        }
-        #welcomeMessage+p {
-            font-size: 4vw;
-            margin-top: -2vh;
-            margin-left: 7vw;
-            max-width: 100%;
-        }
-        .name {
-            font-size: 5vw;
-            margin-top: 2vh;
-            margin-left: 0vw;
-        }
-        .body-text {
-            font-size: 2vw;
-            margin-top: -3vh;
-            margin-left: 7vw;
-        }
-    }
-    
-    @media (max-width: 480px) {
-        .image-container {
-            position: absolute;
-            /* Pastikan posisi absolute */
-            left: 30vw;
-            /* Posisikan elemen di tengah horizontal */
-            top: 23vh;
-            /* Posisikan elemen di tengah vertikal */
-            width: 40vw;
-            height: 40vw;
-            transform: translate(-50%, -50%);
-            /* Geser elemen ke kiri sebanyak setengah lebar dan ke atas sebanyak setengah tinggi untuk benar-benar pusatkan */
-        }
-        .small-image {
-            width: 10vw;
-            height: 10vw;
-        }
-        #welcomeMessage {
-            font-size: 3vw;
-            /* Menyesuaikan ukuran font berdasarkan lebar layar */
-            position: relative;
-            /* Posisi absolute agar bisa diatur secara fleksibel */
-            top: 26%;
-            /* Menempatkan elemen di tengah vertikal */
-            left: 43%;
-            /* Menempatkan elemen di tengah horizontal */
-            transform: translate(-50%, -50%);
-            /* Menggeser elemen setengah dari lebar dan tinggi elemen untuk pusat yang sempurna */
-            text-align: center;
-            /* Memastikan teks di dalam elemen juga terpusat */
-        }
-        #welcomeMessage+p {
-            font-size: 5vw;
-            /* Menyesuaikan ukuran font berdasarkan lebar layar */
-            position: relative;
-            /* Posisi absolute agar bisa diatur secara fleksibel */
-            top: 27%;
-            /* Menempatkan elemen di tengah vertikal */
-            left: 43%;
-            /* Menempatkan elemen di tengah horizontal */
-            transform: translate(-50%, -50%);
-            /* Menggeser elemen setengah dari lebar dan tinggi elemen untuk pusat yang sempurna */
-            text-align: center;
-            max-width: 100%;
-        }
-        .name {
-            font-size: 5vw;
-            /* Menempatkan elemen di tengah vertikal */
-            left: 0%;
-            /* Menempatkan elemen di tengah horizontal */
-            transform: translate(-50%, -50%);
-            /* Menggeser elemen setengah dari lebar dan tinggi elemen untuk pusat yang sempurna */
-            text-align: center;
-        }
-        .body-text {
-            font-size: 3vw;
-            /* Menyesuaikan ukuran font berdasarkan lebar layar */
-            position: relative;
-            /* Posisi absolute agar bisa diatur secara fleksibel */
-            top: 28%;
-            /* Menempatkan elemen di tengah vertikal */
-            left: 43%;
-            /* Menempatkan elemen di tengah horizontal */
-            transform: translate(-50%, -50%);
-            max-width: 80%;
-            text-align: center;
+        100% {
+            transform: rotate(360deg) scale(1);
         }
     }

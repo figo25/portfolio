@@ -4,168 +4,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Layout</title>
+    <title>Navbar Example</title>
+
     <style>
-        body {
+        @font-face {
+            font-family: 'livvic medium';
+            font-style: normal;
+            font-weight: normal;
+            src: local('livvic medium'), url('../font/Livvic-Medium.ttf') format('truetype');
+        }
+        
+        * {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #000000;
-            background-image: url('../image/bg-langit.png');
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-attachment: fixed;
-            background-size: cover;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .navbar {
+            background-color: rgba(0, 4, 255, 0.3);
+            padding: 9px;
+            display: inline-block;
+            margin: 10px auto;
+            border-radius: 20px;
+        }
+        
+        .nav-list {
+            list-style: none;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-        /* #welcomeMessage berada di tengah secara dinamis */
-        
-        #welcomeMessage {
-            font-size: 40px;
-            font-weight: bold;
-            color: white !important;
-            background: linear-gradient(180deg, rgba(0, 17, 255, 0.5), rgba(0, 0, 0, 0.5));
-            border: 3px solid #00AEFF;
-            border-radius: 20px;
-            padding: 10px 20px;
-            margin: 20px 0;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        /* Efek hover untuk welcomeMessage */
-        
-        #welcomeMessage:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 17, 255, 0.8);
+            align-items: center;
         }
         
-        p {
-            text-align: center;
-            color: #ffffff;
-            margin: 10px 0;
+        .nav-list li {
+            margin: 0 15px;
+            position: relative;
         }
         
-        .name {
-            color: #00AEFF;
-            font-size: 55px;
-            font-family: "Lemon";
+        .nav-list a {
+            font-family: 'livvic medium';
+            color: #BDBCBC;
+            text-decoration: none;
+            font-size: 15px;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.3s ease;
         }
         
-        .body-text {
-            font-size: 20px;
-            color: #aeaeae;
-            font-family: "Doppio One";
-            max-width: 60%;
-            text-align: center;
-            margin-top: 10px;
-            animation: blink-caret 0.7s step-end infinite;
-        }
-        /* Tombol berada di bawah dengan jarak teratur */
-        
-        .download-cv-button {
-            font-family: "Doppio One";
-            color: #0011FF;
-            background-color: black;
-            border: 3px solid #0011FF;
-            padding: 13px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 20px;
-            margin-top: 20px;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        .nav-list a.active {
+            color: rgba(182, 232, 255, 1);
+            text-shadow: 0 4px 5px rgba(0, 174, 255, 1), 0 0 10px rgba(0, 174, 255, 0.6), 0 0 15px rgba(0, 174, 255, 0.3);
+            transition: color 0.3s ease, text-shadow 0.3s ease;
         }
         
-        .download-cv-button:hover {
-            background-color: #0011FF;
-            border: 3px solid #ffffff;
-            color: #ffffff;
-            box-shadow: 0 0 30px rgba(0, 17, 255, 0.8), 0 0 80px rgba(0, 0, 255, 0.8);
-        }
-        /* Kontainer untuk tombol sosial */
-        
-        .button-container {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        
-        .stacked-button {
-            width: 55px;
-            height: 55px;
-            border: 3px solid #0011FF;
-            border-radius: 50%;
-            background-color: black;
-            background-size: 35px 35px;
-            background-position: center;
-            background-repeat: no-repeat;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .stacked-button:hover {
-            transform: scale(1.2);
-            box-shadow: 0 0 20px rgba(0, 17, 255, 0.8);
-        }
-        /* Lingkaran blur dengan posisi dinamis */
-        
-        .blur-circle {
-            width: 150px;
-            height: 150px;
-            background-color: #007bff;
-            border-radius: 50%;
-            filter: blur(15px);
+        .nav-list a::after,
+        .nav-list a::before {
+            content: '';
             position: absolute;
-            animation: float 3s ease-in-out infinite;
+            top: -5.5px;
+            transition: opacity 0.3s ease, height 0.3s ease;
         }
         
-        .blur-circle:nth-child(1) {
-            top: 10%;
-            left: 20%;
+        .nav-list a::after {
+            height: 3px;
+            left: 8px;
+            right: 8px;
+            background: rgba(0, 174, 255, 1);
+            border-radius: 3px;
+            opacity: 0;
         }
         
-        .blur-circle:nth-child(2) {
-            bottom: 15%;
-            right: 25%;
+        .nav-list a::before {
+            height: 5px;
+            left: -3px;
+            right: -3px;
+            background: linear-gradient(rgba(0, 174, 255, 1) 20%, rgba(0, 174, 255, 0.5) 50%, transparent 100%);
+            clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
+            opacity: 0;
         }
         
-        .blur-circle:nth-child(3) {
-            top: 50%;
-            right: 10%;
+        .nav-list a.active::before {
+            opacity: 1;
+            height: 20px;
         }
-        /* Animasi lingkaran */
         
-        @keyframes float {
-            0% {
-                transform: translateY(0);
+        .nav-list a.active::after {
+            opacity: 1;
+        }
+        
+        .language-switcher {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 20px;
+            margin-left: 15px;
+        }
+        
+        #language-toggle {
+            display: none;
+        }
+        
+        .toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 100%;
+            background: rgb(112, 124, 255);
+            border-radius: 50px;
+            padding: 2px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .toggle img {
+            position: absolute;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+        
+        #language-toggle:checked+.toggle img {
+            transform: translateX(29px);
+        }
+        
+        #language-toggle:checked+.toggle {
+            background: rgba(0, 174, 255, 1);
+        }
+        
+        .language-en,
+        .language-id {
+            font-family: 'livvic medium';
+            font-size: 12px;
+            font-weight: bold;
+            color: #fff;
+            position: absolute;
+            transition: opacity 0.3s ease;
+        }
+        
+        .language-en {
+            left: 10px;
+            opacity: 0;
+        }
+        
+        .language-id {
+            right: 10px;
+            opacity: 1;
+        }
+        
+        #language-toggle:checked+.toggle .language-en {
+            opacity: 1;
+        }
+        
+        #language-toggle:checked+.toggle .language-id {
+            opacity: 0;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .navbar {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                border-radius: 0;
+                background-color: rgba(0, 4, 255, 0.6);
+                z-index: 10;
+                padding: 10px 0;
             }
-            50% {
-                transform: translateY(-20px);
+            .nav-list {
+                flex-direction: row;
+                justify-content: center;
+                padding: 0;
             }
-            100% {
-                transform: translateY(0);
+            .nav-list li {
+                margin: 0 10px;
+            }
+            .language-switcher {
+                margin-left: 20px;
+            }
+        }
+        
+        @media screen and (max-width: 400px) {
+            .nav-list a {
+                font-size: 0;
+                padding: 15px;
+                top: -7px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                text-align: center;
+                margin: 1.5vw;
+            }
+            .nav-list a::after {
+                height: 3px;
+                left: 4px;
+                right: 4px;
+            }
+            .nav-list a[href="#home"] {
+                background-image: url('../image/home.png');
+            }
+            .nav-list a[href="#about"] {
+                background-image: url('../image/about.png');
+            }
+            .nav-list a[href="#portfolio"] {
+                background-image: url('../image/portfolio.png');
+            }
+            .nav-list a[href="#contact"] {
+                background-image: url('../image/contack.png');
+            }
+            .nav-list a.clicked[href="#home"] {
+                background-image: url('../image/home-active.png');
+            }
+            .nav-list a.clicked[href="#about"] {
+                background-image: url('../image/about-active.png');
+            }
+            .nav-list a.clicked[href="#portfolio"] {
+                background-image: url('../image/portfolio-active.png');
+            }
+            .nav-list a.clicked[href="#contact"] {
+                background-image: url('../image/contact-active.png');
             }
         }
     </style>
 </head>
 
 <body>
-    <h1 id="welcomeMessage">Hi</h1>
-    <p>I am <span class="name">Ahmad Figo</span> <span class="wave">👋</span></p>
-    <p class="body-text">Possesses core expertise in UI/UX design, complemented by additional skills as a proficient front-end developer specializing in HTML, CSS, and JavaScript.</p>
-    <button class="download-cv-button">Download CV</button>
-    <div class="button-container">
-        <div class="stacked-button"></div>
-        <div class="stacked-button"></div>
-        <div class="stacked-button"></div>
-        <div class="stacked-button"></div>
-    </div>
-    <div class="blur-circle"></div>
-    <div class="blur-circle"></div>
-    <div class="blur-circle"></div>
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li>
+                <div class="language-switcher">
+                    <input type="checkbox" id="language-toggle">
+                    <label for="language-toggle" class="toggle">
+                        <img id="flag-icon" src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg" alt="flag-icon">
+                        <span class="language-en">EN</span>
+                        <span class="language-id">ID</span>
+                    </label>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <script>
+        const toggle = document.getElementById('language-toggle');
+        const flagIcon = document.getElementById('flag-icon');
+
+        const storedLanguage = localStorage.getItem('language');
+        if (storedLanguage === 'en') {
+            toggle.checked = true;
+            flagIcon.src = "image/inggris.png";
+        } else {
+            toggle.checked = false;
+            flagIcon.src = "https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg";
+        }
+
+        toggle.addEventListener('change', () => {
+            const isEnglish = toggle.checked;
+            flagIcon.src = isEnglish ? "image/inggris.png" : "https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg";
+            localStorage.setItem('language', isEnglish ? 'en' : 'id');
+        });
+
+        document.querySelectorAll('.nav-list a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('.nav-list a').forEach(item => item.classList.remove('active', 'clicked'));
+                this.classList.add('active', 'clicked');
+            });
+        });
+    </script>
 </body>
 
 </html>

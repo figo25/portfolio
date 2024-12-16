@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar Transparan</title>
-    <link rel="stylesheet" href="css/navbar.css">
+    <title>Halaman Musik</title>
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="logo">
-            <a href="#">Portfolio</a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#"><span class="menu-bg"></span>Home</a></li>
-            <li><a href="#"><span class="menu-bg"></span>About</a></li>
-            <li><a href="#"><span class="menu-bg"></span>Contact</a></li>
-        </ul>
-    </nav>
+
+    <h1>Selamat datang di Halaman Musik!</h1>
+
+    <!-- Audio Player dengan autoplay dan muted sementara -->
+    <audio id="myAudio" autoplay muted>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+        Browser Anda tidak mendukung tag audio.
+    </audio>
+
+    <!-- Tombol Play untuk mengaktifkan suara setelah autoplay -->
+    <button onclick="document.getElementById('myAudio').muted = false; document.getElementById('myAudio').play()">Putar Musik</button>
+
 </body>
 
 </html>
