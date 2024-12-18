@@ -50,7 +50,6 @@ body {
     /* Menjaga posisi header di bagian atas */
     z-index: 1;
     /* Pastikan header tetap di atas konten lainnya */
-    border: 1px solid red;
     /* Untuk memudahkan debugging */
 }
 
@@ -303,7 +302,6 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    border: 2px solid red;
     transition: top 0.3s ease;
 }
 
@@ -538,7 +536,6 @@ p {
     width: 500px;
     height: 500px;
     /* Tambahkan warna untuk visualisasi */
-    border: 2px solid red;
 }
 
 .container img {
