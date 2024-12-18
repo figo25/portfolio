@@ -1,623 +1,810 @@
-    @font-face {
-        font-family: "Nico Moji";
-        src: url('../font/NicoMoji-Regular.ttf');
+@font-face {
+    font-family: "Nico Moji";
+    src: url('../font/NicoMoji-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Livvic Medium";
+    src: url('../font/Livvic-Medium.ttf');
+}
+
+@font-face {
+    font-family: "Livvic regular";
+    src: url('../font/Livvic-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Livvic semobold";
+    src: url('../font/Livvic-SemiBold.ttf');
+}
+
+body {
+    margin: 0;
+    background-color: rgba(0, 9, 38, 1);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-left: 0px;
+    height: 100vh;
+}
+
+
+/* Warna teks untuk #welcomeMessage */
+
+.header {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 28.6%;
+    /* Ubah gap agar lebih rapat jika diperlukan */
+    width: 80%;
+    /* Agar header meluas ke seluruh lebar layar */
+    top: 0;
+    /* Menjaga posisi header di bagian atas */
+    z-index: 1;
+    /* Pastikan header tetap di atas konten lainnya */
+    border: 1px solid red;
+    /* Untuk memudahkan debugging */
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    margin-top: -15px;
+}
+
+.logo {
+    width: 47px;
+    height: auto;
+}
+
+.lamp-image {
+    width: 50px;
+    height: auto;
+    cursor: pointer;
+}
+
+.navbar {
+    position: relative;
+    display: flex;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 4, 255, 0.3);
+    padding: 9px;
+    display: inline-block;
+    border-radius: 20px;
+    margin-top: -15px;
+    z-index: 2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Area setengah lingkaran */
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-list li {
+    margin: 0 15px;
+    position: relative;
+}
+
+.nav-list a {
+    font-family: 'livvic medium';
+    color: #BDBCBC;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+    margin: 0vw;
+}
+
+.nav-list a.active {
+    color: rgba(182, 232, 255, 1);
+    text-shadow: 0 4px 5px rgba(0, 174, 255, 1), 0 0 10px rgba(0, 174, 255, 0.6), 0 0 15px rgba(0, 174, 255, 0.3);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.nav-list a::after,
+.nav-list a::before {
+    content: '';
+    position: absolute;
+    top: -5.5px;
+    transition: opacity 0.3s ease, height 0.3s ease;
+}
+
+.nav-list a::after {
+    height: 3px;
+    left: 8px;
+    right: 8px;
+    background: rgba(0, 174, 255, 1);
+    border-radius: 3px;
+    opacity: 0;
+}
+
+.nav-list a::before {
+    height: 5px;
+    left: -3px;
+    right: -3px;
+    background: linear-gradient(rgba(0, 174, 255, 1) 20%, rgba(0, 174, 255, 0.5) 50%, transparent 100%);
+    clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
+    opacity: 0;
+}
+
+.nav-list a.active::before {
+    opacity: 1;
+    height: 20px;
+}
+
+.nav-list a.active::after {
+    opacity: 1;
+}
+
+.language-switcher {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 20px;
+}
+
+#language-toggle {
+    display: none;
+}
+
+.toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    background: rgb(112, 124, 255);
+    border-radius: 50px;
+    padding: 2px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.toggle img {
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+#language-toggle:checked+.toggle img {
+    transform: translateX(29px);
+}
+
+#language-toggle:checked+.toggle {
+    background: rgba(0, 174, 255, 1);
+}
+
+.language-en,
+.language-id {
+    font-family: 'livvic medium';
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    position: absolute;
+    transition: opacity 0.3s ease;
+}
+
+.language-en {
+    left: 10px;
+    opacity: 0;
+}
+
+.language-id {
+    right: 10px;
+    opacity: 1;
+}
+
+#language-toggle:checked+.toggle .language-en {
+    opacity: 1;
+}
+
+#language-toggle:checked+.toggle .language-id {
+    opacity: 0;
+}
+
+.half-circle {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 4, 255, 0.3);
+    border-radius: 20px;
+    clip-path: polygon(0% 38%, 0% 100%, 100% 100%, 100% 38%);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    z-index: 1;
+}
+
+
+/* Saat navbar terbuka (hover) */
+
+.navbar.open .half-circle {
+    width: 120px;
+    height: 40px;
+    border-radius: 20px;
+    clip-path: polygon(0% 38%, 0% 100%, 100% 100%, 100% 38%);
+}
+
+
+/* Ikon Nada Lagu */
+
+.icon-music {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 15px;
+    color: rgba(0, 174, 255, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+
+/* Player Buttons */
+
+.navbar.open .icon-music {
+    justify-content: space-between;
+    width: 85px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+
+/* Warna Biru untuk ikon ketika musik diputar */
+
+.icon-music.playing {
+    color: rgba(0, 174, 255, 1);
+}
+
+
+/* Warna Putih untuk ikon ketika musik dipause */
+
+.icon-music.paused {
+    color: white;
+}
+
+.main-container {
+    max-width: 45vw;
+    width: 100%;
+    position: absolute;
+    top: 20vh;
+    left: 10vw;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border: 2px solid red;
+    transition: top 0.3s ease;
+}
+
+#welcomeMessage {
+    font-family: "Nico Moji";
+    margin: 0;
+    padding: 8px 15px;
+    position: relative;
+    font-size: 2.1vw;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0, 174, 255, 1);
+    border-radius: 15px;
+    transition: width 0.3s ease;
+}
+
+
+/* Gaya untuk elemen span dengan class 'wave' */
+
+.hand {
+    display: inline-block;
+    animation: hand-animation 1s infinite;
+}
+
+
+/* Contoh animasi untuk emoji melambai */
+
+@keyframes hand-animation {
+    0% {
+        transform: rotate(0deg);
     }
-    
-    @font-face {
-        font-family: "Livvic Medium";
-        src: url('../font/Livvic-Medium.ttf');
+    25% {
+        transform: rotate(20deg);
     }
-    
-    @font-face {
-        font-family: "Livvic regular";
-        src: url('../font/Livvic-Regular.ttf');
+    50% {
+        transform: rotate(0deg);
     }
-    
-    @font-face {
-        font-family: "Livvic semobold";
-        src: url('../font/Livvic-SemiBold.ttf');
+    75% {
+        transform: rotate(-20deg);
     }
-    
-    body {
-        margin: 0;
-        background-color: rgba(0, 9, 38, 1);
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-attachment: fixed;
-        background-size: cover;
-        display: flex;
-        align-items: flex-start;
-        flex-direction: column;
-        padding-left: 0px;
-        height: 100vh;
+    100% {
+        transform: rotate(0deg);
     }
-    /* Warna teks untuk #welcomeMessage */
-    
+}
+
+
+/* Gaya untuk paragraf di bawah #welcomeMessage */
+
+#welcomeMessage+p {
+    color: #ffffff;
+    font-size: 3vw;
+    font-family: "Livvic regular";
+    margin-top: 2%;
+    max-width: 100%;
+}
+
+.name {
+    color: rgba(0, 174, 255, 1);
+    font-size: 3vw;
+    font-family: "Nico Moji";
+}
+
+
+/* Gaya untuk teks p yang paling bawah */
+
+p {
+    margin: 0;
+}
+
+.body-text {
+    font-size: 1.5vw;
+    color: #ffffff;
+    font-family: "Livvic regular";
+    margin-top: 5%;
+}
+
+.download-cv-button {
+    position: absolute;
+    top: 65%;
+    left: 10%;
+    height: 52px;
+    font-family: "Livvic semobold";
+    color: rgba(0, 174, 255, 1);
+    background-color: transparent;
+    border: 3px solid rgba(0, 174, 255, 1);
+    padding: 13px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.download-cv-button:hover {
+    background-color: #0011FF;
+    border: 3px solid #ffffff;
+    /* Slightly lighter black on hover */
+    color: rgb(255, 255, 255);
+    /* Lighter blue on hover */
+    box-shadow: 0 0 30px -8px rgb(213, 213, 254), 0 0 80px rgba(0, 0, 255, 0.9), 0 0 100px rgba(0, 0, 255, 0.8);
+}
+
+
+/*style button socials*/
+
+.button-container {
+    position: absolute;
+    top: 65%;
+    left: 22%;
+    width: 60px;
+    height: 60px;
+}
+
+.stacked-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 52px;
+    height: 52px;
+    background-color: rgba(0, 9, 38, 1);
+    background-size: 35px 35px;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 3px solid rgba(0, 174, 255, 1);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border 0.3s ease, color 0.3s ease;
+}
+
+.stacked-button:nth-child(1) {
+    z-index: 5;
+    color: rgba(0, 174, 255, 1);
+    font-family: "Livvic regular";
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    cursor: default;
+    border: 3px solid rgba(0, 174, 255, 1);
+    /* Menambahkan Flexbox untuk menengahkan teks */
+    display: flex;
+    align-items: center;
+    /* Vertikal */
+    justify-content: center;
+    /* Horizontal */
+}
+
+.stacked-button:nth-child(2) {
+    background-image: url("../image/wa-blue.png");
+    transform: translateX(1px);
+    z-index: 4;
+}
+
+.stacked-button:nth-child(3) {
+    background-image: url("../image/ig-blue.png");
+    transform: translateX(2px);
+    z-index: 3;
+}
+
+.stacked-button:nth-child(4) {
+    background-image: url("../image/in-blue.png");
+    transform: translateX(3px);
+    z-index: 2;
+}
+
+.stacked-button:nth-child(5) {
+    background-image: url("../image/git-blue.png");
+    transform: translateX(4px);
+    z-index: 1;
+}
+
+.button-container:hover .stacked-button:nth-child(1) {
+    color: #FFFFFF;
+    border: 3px solid #FFFFFF;
+    background-color: #0011FF;
+}
+
+.button-container:hover .stacked-button:nth-child(2) {
+    transform: translateX(60px);
+}
+
+.button-container:hover .stacked-button:nth-child(3) {
+    transform: translateX(120px);
+}
+
+.button-container:hover .stacked-button:nth-child(4) {
+    transform: translateX(180px);
+}
+
+.button-container:hover .stacked-button:nth-child(5) {
+    transform: translateX(240px);
+}
+
+.stacked-button:nth-child(n+2):hover {
+    box-shadow: 0 0 30px -8px rgb(213, 213, 254), 0 0 50px rgba(0, 0, 255), 0 0 80px rgba(0, 0, 255);
+    background-color: #0011FF;
+    border: 3px solid #FFFFFF;
+}
+
+.stacked-button:nth-child(2):hover {
+    background-image: url("../image/wa-white.png");
+}
+
+.stacked-button:nth-child(3):hover {
+    background-image: url("../image/ig-white.png");
+}
+
+.stacked-button:nth-child(4):hover {
+    background-image: url("../image/in-white.png");
+}
+
+.stacked-button:nth-child(5):hover {
+    background-image: url("../image/git-white.png");
+}
+
+.button-container:before {
+    content: '';
+    position: absolute;
+    width: 290px;
+    height: 52px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.button-container:hover:before {
+    pointer-events: all;
+}
+
+.container {
+    position: absolute;
+    right: 16vh;
+    /* Berada di luar dan beri jarak 20px */
+    top: 10%;
+    /* Sejajar atas dengan .main-container */
+    width: 500px;
+    height: 500px;
+    /* Tambahkan warna untuk visualisasi */
+    border: 2px solid red;
+}
+
+.container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: rotateScale 15s linear infinite;
+}
+
+.container img:nth-child(2) {
+    animation-direction: reverse;
+    width: 100%;
+    height: 100%;
+    animation-duration: 10s;
+}
+
+.container img:nth-child(3) {
+    opacity: 70%;
+    z-index: -1;
+    width: 65%;
+    height: 85%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: none;
+    /* Gambar ketiga tanpa animasi */
+}
+
+@keyframes rotateScale {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.2);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .main-container {
+        max-width: 40vw;
+        top: 30vh;
+        /* Bergeser lebih ke bawah */
+    }
+}
+
+@media screen and (max-width: 768px) {
     .header {
-        position: fixed;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        left: 50%;
-        transform: translateX(-50%);
-        gap: 28.6%;
-        /* Ubah gap agar lebih rapat jika diperlukan */
-        width: 80%;
-        /* Agar header meluas ke seluruh lebar layar */
-        top: 0;
-        /* Menjaga posisi header di bagian atas */
-        z-index: 1;
-        /* Pastikan header tetap di atas konten lainnya */
-        border: 1px solid red;
-        /* Untuk memudahkan debugging */
+        width: 90%;
+        /* Lebarkan header untuk layar kecil */
     }
-    
-    .logo-container {
-        display: flex;
-        align-items: center;
-        margin-top: -15px;
+    .nav-list {
+        flex-direction: row;
+        justify-content: center;
+        padding: 0;
     }
-    
+    .nav-list li {
+        margin: 0 10px;
+    }
+    .language-switcher {
+        margin-left: 20px;
+    }
+    .main-container {
+        max-width: 70vw;
+        top: 50vh;
+        left: 50vw;
+        transform: translate(-50%, -50%);
+        align-items: center;
+    }
+    #welcomeMessage {
+        font-size: 4vw;
+    }
+    #welcomeMessage+p {
+        font-size: 5vw;
+    }
+    .body-text {
+        font-size: 3vw;
+        align-items: center;
+        text-align: center;
+    }
+    .download-cv-button {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+    .button-container {
+        top: 65%;
+        left: 22%;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .header {
+        width: 95%;
+        /* Header lebih lebar mendekati pinggir layar */
+    }
     .logo {
-        width: 47px;
-        height: auto;
+        width: 37px;
     }
-    
     .lamp-image {
-        width: 50px;
-        height: auto;
-        cursor: pointer;
+        width: 40px;
     }
-    
     .navbar {
         position: relative;
-        top: 25px;
+        top: 100%;
         left: 50%;
+        width: 100%;
         transform: translateX(-50%);
         background-color: rgba(0, 4, 255, 0.3);
         padding: 9px;
         display: inline-block;
-        border-radius: 20px;
+        border-radius: 0px;
         margin-top: -15px;
         z-index: 2;
     }
-    
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    /* Area setengah lingkaran */
-    
-    .nav-list {
-        list-style: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .nav-list li {
-        margin: 0 15px;
-        position: relative;
-    }
-    
     .nav-list a {
-        font-family: 'livvic medium';
-        color: #BDBCBC;
-        text-decoration: none;
-        font-size: 15px;
-        padding: 5px 0;
-        position: relative;
-        transition: color 0.3s ease;
+        font-size: 0;
+        padding: 15px;
+        top: -7px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        text-align: center;
+        margin: 2.5vw;
     }
-    
-    .nav-list a.active {
-        color: rgba(182, 232, 255, 1);
-        text-shadow: 0 4px 5px rgba(0, 174, 255, 1), 0 0 10px rgba(0, 174, 255, 0.6), 0 0 15px rgba(0, 174, 255, 0.3);
-        transition: color 0.3s ease, text-shadow 0.3s ease;
-    }
-    
-    .nav-list a::after,
-    .nav-list a::before {
-        content: '';
-        position: absolute;
-        top: -5.5px;
-        transition: opacity 0.3s ease, height 0.3s ease;
-    }
-    
     .nav-list a::after {
         height: 3px;
-        left: 8px;
-        right: 8px;
-        background: rgba(0, 174, 255, 1);
-        border-radius: 3px;
-        opacity: 0;
+        left: 4px;
+        right: 4px;
     }
-    
-    .nav-list a::before {
-        height: 5px;
-        left: -3px;
-        right: -3px;
-        background: linear-gradient(rgba(0, 174, 255, 1) 20%, rgba(0, 174, 255, 0.5) 50%, transparent 100%);
-        clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
-        opacity: 0;
+    .nav-list a[href="#home"] {
+        background-image: url('../image/home.png');
     }
-    
-    .nav-list a.active::before {
-        opacity: 1;
-        height: 20px;
+    .nav-list a[href="#about"] {
+        background-image: url('../image/about.png');
     }
-    
-    .nav-list a.active::after {
-        opacity: 1;
+    .nav-list a[href="#portfolio"] {
+        background-image: url('../image/portfolio.png');
     }
-    
-    .language-switcher {
-        position: relative;
-        display: inline-block;
-        width: 50px;
-        height: 20px;
-        margin-left: 15px;
+    .nav-list a[href="#contact"] {
+        background-image: url('../image/contack.png');
     }
-    
-    #language-toggle {
-        display: none;
+    .nav-list a.active[href="#home"] {
+        background-image: url('../image/home-active.png');
     }
-    
-    .toggle {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        height: 100%;
-        background: rgb(112, 124, 255);
-        border-radius: 50px;
-        padding: 2px;
-        cursor: pointer;
-        transition: background 0.3s ease;
+    .nav-list a.active[href="#about"] {
+        background-image: url('../image/about-active.png');
     }
-    
-    .toggle img {
-        position: absolute;
-        width: 17px;
-        height: 17px;
-        border-radius: 50%;
-        transition: transform 0.3s ease;
+    .nav-list a.active[href="#portfolio"] {
+        background-image: url('../image/portfolio-active.png');
     }
-    
-    #language-toggle:checked+.toggle img {
-        transform: translateX(29px);
+    .nav-list a.active[href="#contact"] {
+        background-image: url('../image/contact-active.png');
     }
-    
-    #language-toggle:checked+.toggle {
-        background: rgba(0, 174, 255, 1);
-    }
-    
-    .language-en,
-    .language-id {
-        font-family: 'livvic medium';
-        font-size: 12px;
-        font-weight: bold;
-        color: #fff;
-        position: absolute;
-        transition: opacity 0.3s ease;
-    }
-    
-    .language-en {
-        left: 10px;
-        opacity: 0;
-    }
-    
-    .language-id {
-        right: 10px;
-        opacity: 1;
-    }
-    
-    #language-toggle:checked+.toggle .language-en {
-        opacity: 1;
-    }
-    
-    #language-toggle:checked+.toggle .language-id {
-        opacity: 0;
-    }
-    
     .half-circle {
-        position: absolute;
-        bottom: -25px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 40px;
-        height: 40px;
-        background-color: rgba(0, 4, 255, 0.3);
-        border-radius: 20px;
-        clip-path: polygon(0% 38%, 0% 100%, 100% 100%, 100% 38%);
-        transition: all 0.3s ease;
-        cursor: pointer;
-        z-index: 1;
+        bottom: 25px;
+        clip-path: polygon(0% 0%, 0% 58%, 100% 58%, 100% 0%);
     }
-    /* Saat navbar terbuka (hover) */
-    
     .navbar.open .half-circle {
-        width: 120px;
-        height: 40px;
-        border-radius: 20px;
-        clip-path: polygon(0% 38%, 0% 100%, 100% 100%, 100% 38%);
+        clip-path: polygon(0% 0%, 0% 58%, 100% 58%, 100% 0%);
     }
-    /* Ikon Nada Lagu */
-    
     .icon-music {
-        position: absolute;
-        bottom: -20px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 15px;
-        color: rgba(0, 174, 255, 1);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: all 0.3s ease;
-    }
-    /* Player Buttons */
-    
-    .navbar.open .icon-music {
-        justify-content: space-between;
-        width: 85px;
-        cursor: pointer;
-        z-index: 2;
-    }
-    /* Warna Biru untuk ikon ketika musik diputar */
-    
-    .icon-music.playing {
-        color: rgba(0, 174, 255, 1);
-    }
-    /* Warna Putih untuk ikon ketika musik dipause */
-    
-    .icon-music.paused {
-        color: white;
-    }
-    
-    @media screen and (max-width: 768px) {
-        .nav-list {
-            flex-direction: row;
-            justify-content: center;
-            padding: 0;
-        }
-        .nav-list li {
-            margin: 0 10px;
-        }
-        .language-switcher {
-            margin-left: 20px;
-        }
-    }
-    
-    @media screen and (max-width: 400px) {
-        .navbar {
-            position: relative;
-            top: 200px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 4, 255, 0.3);
-            padding: 9px;
-            display: inline-block;
-            border-radius: 20px;
-            margin-top: -15px;
-            z-index: 2;
-        }
-        .nav-list a {
-            font-size: 0;
-            padding: 15px;
-            top: -7px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            text-align: center;
-            margin: 1.5vw;
-        }
-        .nav-list a::after {
-            height: 3px;
-            left: 4px;
-            right: 4px;
-        }
-        .nav-list a[href="#home"] {
-            background-image: url('../image/home.png');
-        }
-        .nav-list a[href="#about"] {
-            background-image: url('../image/about.png');
-        }
-        .nav-list a[href="#portfolio"] {
-            background-image: url('../image/portfolio.png');
-        }
-        .nav-list a[href="#contact"] {
-            background-image: url('../image/contack.png');
-        }
-        .nav-list a.clicked[href="#home"] {
-            background-image: url('../image/home-active.png');
-        }
-        .nav-list a.clicked[href="#about"] {
-            background-image: url('../image/about-active.png');
-        }
-        .nav-list a.clicked[href="#portfolio"] {
-            background-image: url('../image/portfolio-active.png');
-        }
-        .nav-list a.clicked[href="#contact"] {
-            background-image: url('../image/contact-active.png');
-        }
-    }
-    
-    .main-container {
-        max-width: 700px;
-        position: absolute;
-        top: 20%;
-        left: 10%;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        border: 2px solid red;
-    }
-    
-    #welcomeMessage {
-        font-family: "Nico Moji";
-        margin: 0;
-        padding: 8px 15px;
-        position: relative;
-        font-size: 2.1vw;
-        font-weight: bold;
-        color: white;
-        background-color: rgba(0, 174, 255, 1);
-        border-radius: 15px;
-        transition: width 0.3s ease;
-    }
-    /* Gaya untuk elemen span dengan class 'wave' */
-    
-    .hand {
-        display: inline-block;
-        animation: hand-animation 1s infinite;
-    }
-    /* Contoh animasi untuk emoji melambai */
-    
-    @keyframes hand-animation {
-        0% {
-            transform: rotate(0deg);
-        }
-        25% {
-            transform: rotate(20deg);
-        }
-        50% {
-            transform: rotate(0deg);
-        }
-        75% {
-            transform: rotate(-20deg);
-        }
-        100% {
-            transform: rotate(0deg);
-        }
-    }
-    /* Gaya untuk paragraf di bawah #welcomeMessage */
-    
-    #welcomeMessage+p {
-        color: #ffffff;
-        font-size: 3vw;
-        font-family: "Livvic regular";
-        margin-top: 2%;
-        max-width: 100%;
-    }
-    
-    .name {
-        color: rgba(0, 174, 255, 1);
-        font-size: 3vw;
-        font-family: "Nico Moji";
-    }
-    /* Gaya untuk teks p yang paling bawah */
-    
-    p {
-        margin: 0;
-    }
-    
-    .body-text {
-        font-size: 1.5vw;
-        color: rgba(128, 128, 128, 1);
-        font-family: "Livvic regular";
-        margin-top: 5%;
-    }
-    
-    .download-cv-button {
-        font-family: "Livvic semobold";
-        color: rgba(0, 174, 255, 1);
-        background-color: transparent;
-        border: 3px solid rgba(0, 174, 255, 1);
-        padding: 13px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        border-radius: 20px;
-        margin-top: 20%;
-    }
-    
-    .download-cv-button:hover {
-        background-color: #0011FF;
-        border: 3px solid #ffffff;
-        /* Slightly lighter black on hover */
-        color: rgb(255, 255, 255);
-        /* Lighter blue on hover */
-        box-shadow: 0 0 30px -8px rgb(213, 213, 254), 0 0 80px rgba(0, 0, 255, 0.9), 0 0 100px rgba(0, 0, 255, 0.8);
-    }
-    /*style button socials*/
-    
-    .button-container {
-        position: absolute;
-        top: 87.6%;
-        left: 24%;
-        width: 54px;
-        height: 52px;
-    }
-    
-    .stacked-button {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 55px;
-        height: 55px;
-        background-color: rgba(0, 9, 38, 1);
-        background-size: 35px 35px;
-        background-position: center;
-        background-repeat: no-repeat;
-        border: 3px solid rgba(0, 174, 255, 1);
-        border-radius: 50%;
-        cursor: pointer;
-        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border 0.3s ease, color 0.3s ease;
-    }
-    
-    .stacked-button:nth-child(1) {
-        z-index: 5;
-        color: rgba(0, 174, 255, 1);
-        font-family: "Livvic regular";
+        bottom: 45px;
         font-size: 12px;
-        font-weight: bold;
-        text-align: center;
-        cursor: default;
-        border: 3px solid rgba(0, 174, 255, 1);
-        /* Menambahkan Flexbox untuk menengahkan teks */
-        display: flex;
-        align-items: center;
-        /* Vertikal */
-        justify-content: center;
-        /* Horizontal */
     }
-    
-    .stacked-button:nth-child(2) {
-        background-image: url("../image/wa-blue.png");
-        transform: translateX(1px);
-        z-index: 4;
-    }
-    
-    .stacked-button:nth-child(3) {
-        background-image: url("../image/ig-blue.png");
-        transform: translateX(2px);
-        z-index: 3;
-    }
-    
-    .stacked-button:nth-child(4) {
-        background-image: url("../image/in-blue.png");
-        transform: translateX(3px);
-        z-index: 2;
-    }
-    
-    .stacked-button:nth-child(5) {
-        background-image: url("../image/git-blue.png");
-        transform: translateX(4px);
-        z-index: 1;
-    }
-    
-    .button-container:hover .stacked-button:nth-child(1) {
-        color: #FFFFFF;
-        border: 3px solid #FFFFFF;
-        background-color: #0011FF;
-    }
-    
-    .button-container:hover .stacked-button:nth-child(2) {
-        transform: translateX(70px);
-    }
-    
-    .button-container:hover .stacked-button:nth-child(3) {
-        transform: translateX(140px);
-    }
-    
-    .button-container:hover .stacked-button:nth-child(4) {
-        transform: translateX(210px);
-    }
-    
-    .button-container:hover .stacked-button:nth-child(5) {
-        transform: translateX(280px);
-    }
-    
-    .stacked-button:nth-child(n+2):hover {
-        box-shadow: 0 0 30px -8px rgb(213, 213, 254), 0 0 50px rgba(0, 0, 255), 0 0 80px rgba(0, 0, 255);
-        background-color: #0011FF;
-        border: 3px solid #FFFFFF;
-    }
-    
-    .stacked-button:nth-child(2):hover {
-        background-image: url("../image/wa-white.png");
-    }
-    
-    .stacked-button:nth-child(3):hover {
-        background-image: url("../image/ig-white.png");
-    }
-    
-    .stacked-button:nth-child(4):hover {
-        background-image: url("../image/in-white.png");
-    }
-    
-    .stacked-button:nth-child(5):hover {
-        background-image: url("../image/git-white.png");
-    }
-    
-    .button-container:before {
-        content: '';
-        position: absolute;
-        top: 0%;
-        left: 0%;
-        right: 0;
-        bottom: 0;
-        width: 335px;
-        height: 55px;
-        z-index: 1;
-        pointer-events: none;
-    }
-    
-    .button-container:hover:before {
-        pointer-events: all;
-    }
-    
-    .container {
-        position: absolute;
-        left: 105%;
-        /* Berada di luar dan beri jarak 20px */
-        top: -5%;
-        /* Sejajar atas dengan .main-container */
-        width: 500px;
-        height: 500px;
-        /* Tambahkan warna untuk visualisasi */
-        border: 2px solid red;
-    }
-    
-    .container img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        animation: rotateScale 15s linear infinite;
-    }
-    
-    .container img:nth-child(2) {
-        animation-direction: reverse;
-        width: 100%;
-        height: 100%;
-        animation-duration: 10s;
-    }
-    
-    .container img:nth-child(3) {
-        opacity: 70%;
-        z-index: -1;
-        width: 65%;
-        height: 85%;
-        top: 50%;
+    .main-container {
+        max-width: 90%;
+        top: 60%;
+        /* Awal untuk posisi tengah */
         left: 50%;
         transform: translate(-50%, -50%);
-        animation: none;
-        /* Gambar ketiga tanpa animasi */
+        /* Pastikan posisi di tengah vertikal dan horizontal */
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* Center secara vertikal */
+        align-items: center;
+        /* Center secara horizontal */
+        border: none;
+        /* Opsional: hapus border untuk estetika */
+        padding: 10px;
+        /* Tambahkan padding untuk ruang di layar kecil */
     }
-    
-    @keyframes rotateScale {
-        0% {
-            transform: rotate(0deg) scale(1);
-        }
-        50% {
-            transform: rotate(180deg) scale(1.2);
-        }
-        100% {
-            transform: rotate(360deg) scale(1);
-        }
+    #welcomeMessage {
+        font-size: 5vw;
+        text-align: center;
     }
+    #welcomeMessage+p {
+        font-size: 6vw;
+        text-align: center;
+    }
+    .name {
+        font-size: 6vw;
+    }
+    .body-text {
+        font-size: 3.5vw;
+        text-align: center;
+    }
+    .download-cv-button {
+        font-size: 1rem;
+        padding: 5px 10px;
+        top: 75%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        /* Tambahkan lebar agar proporsional */
+        max-width: 300px;
+        /* Batasi ukuran maksimum */
+    }
+    .button-container {
+        position: absolute;
+        /* Pastikan bisa diatur dengan top dan left */
+        top: 85%;
+        /* Posisi tengah vertikal */
+        left: 50%;
+        /* Posisi tengah horizontal */
+        transform: translate(-50%, -50%);
+        /* Geser untuk benar-benar di tengah */
+        display: flex;
+        justify-content: center;
+        /* Susun tombol di tengah secara horizontal */
+        align-items: center;
+        /* Pastikan tombol rata secara vertikal */
+        gap: 15px;
+        /* Jarak antar tombol */
+        width: auto;
+    }
+    .stacked-button {
+        position: relative;
+        /* Tidak lagi absolute */
+        transform: none;
+        /* Hilangkan transform */
+        z-index: auto;
+        /* Tidak perlu z-index spesifik */
+        transition: none;
+        /* Hilangkan animasi transisi */
+    }
+    .button-container:hover .stacked-button:nth-child(2),
+    .button-container:hover .stacked-button:nth-child(3),
+    .button-container:hover .stacked-button:nth-child(4),
+    .button-container:hover .stacked-button:nth-child(5) {
+        transform: none;
+        /* Tidak perlu transform hover */
+    }
+    .button-container:before {
+        display: none;
+        /* Hilangkan elemen dekoratif */
+    }
+    .stacked-button:nth-child(1) {
+        display: none;
+        /* Sembunyikan tombol "Social" */
+    }
+    .container {
+        position: absolute;
+        left: 50%;
+        /* Berada di luar dan beri jarak 20px */
+        transform: translate(-50%, -50%);
+        top: 30%;
+        /* Sejajar atas dengan .main-container */
+        width: 60vw;
+        height: 60vw;
+        /* Tambahkan warna untuk visualisasi */
+    }
+}
