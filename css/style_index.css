@@ -268,3 +268,30 @@ p {
         transform: translateY(0);
     }
 }
+
+@media (max-width: 480px) {
+    .text {
+        top: 40%;
+        font-size: 30px;
+        letter-spacing: -8px;
+    }
+    p {
+        font-size: 14px;
+        /* Menyesuaikan ukuran font lebih kecil */
+        top: 50%;
+        /* Menurunkan posisi top lebih jauh */
+        animation: typing 5s steps(40, end), blink-caret 0.7s step-end infinite;
+    }
+    @keyframes typing {
+        from {
+            width: 0;
+        }
+        to {
+            width: 80%;
+            /* Panjang teks penuh */
+        }
+    }
+    .input-container {
+        top: 60%
+    }
+}
